@@ -5,32 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eng. Mohamed Ezzat - Contact Card</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
+    <!-- SEO -->
+    <meta name="description"
+        content="Connect with Eng. Mohamed Ezzat - Software Development Consultant, Full Stack Developer, and Digital Skills Unit Head.">
+
     <style>
+        /* Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Body & Background */
         body {
             font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
             padding-top: 2%;
-            min-height: 100vh;
             overflow: hidden;
             background: linear-gradient(135deg, #1e3a8a, #1e40af, #0e7490, #0891b2, #155e75);
             background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            animation: gradientMove 15s ease infinite;
         }
 
-        @keyframes gradientShift {
+        /* Animations */
+        @keyframes gradientMove {
 
             0%,
             100% {
@@ -42,11 +49,9 @@
             }
         }
 
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0) translateX(0);
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
                 opacity: 0;
             }
 
@@ -56,156 +61,113 @@
             }
 
             100% {
-                transform: translateY(-100vh) translateX(100px);
+                transform: translateY(-100vh);
                 opacity: 0;
             }
         }
 
-        @keyframes shimmer {
+        @keyframes slideIn {
             from {
-                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                opacity: 0;
+                transform: translateY(50px) scale(0.9);
             }
 
             to {
-                transform: translateX(100%) translateY(100%) rotate(45deg);
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
-        @keyframes profilePulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.03);
-            }
-        }
-
+        /* Floating Particles */
         .particle {
             position: absolute;
             width: 4px;
             height: 4px;
             background: rgba(255, 255, 255, 0.5);
             border-radius: 50%;
-            animation: float 20s infinite;
+            animation: floatUp 20s infinite;
         }
 
+        /* Card Container */
         .card {
             width: 420px;
             max-width: 95vw;
             padding: 40px 35px;
-            border-radius: 30px;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: -50%;
-            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
-        }
-
-        .card.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        .profile-section {
-            text-align: center;
-            margin-bottom: 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.8s ease;
             position: relative;
             z-index: 1;
         }
 
+        /* Profile Section */
         .profile-photo {
             width: 140px;
             height: 140px;
-            border-radius: 50%;
             margin: 0 auto 20px;
-            display: block;
             border: 5px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
             background-size: cover;
             background-position: center;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation: profilePulse 3s ease-in-out infinite;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease;
         }
 
         .profile-photo:hover {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 0 10px rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
         }
 
-        .card h2 {
+        h2 {
             font-size: 32px;
             font-weight: 700;
-            margin: 0 0 10px;
             color: #fff;
+            text-align: center;
+            margin-bottom: 10px;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-            letter-spacing: -0.5px;
         }
 
-        .card .title,
-        .card .company {
+        .title,
+        .company {
+            text-align: center;
             color: rgba(255, 255, 255, 0.95);
         }
 
-        .card .title {
+        .title {
             font-size: 16px;
             font-weight: 500;
             margin-bottom: 5px;
         }
 
-        .card .company {
+        .company {
             font-size: 15px;
-            font-weight: 400;
             margin-bottom: 25px;
         }
 
+        /* Divider */
         .divider {
             height: 2px;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
             margin: 25px 0;
         }
 
-        .contact-section,
-        .social-section {
-            position: relative;
-            z-index: 1;
-        }
-
-        .social-section {
-            margin-top: 25px;
-        }
-
+        /* Contact Items */
         .contact-item {
             display: flex;
             align-items: center;
             margin: 12px 0;
             padding: 10px 12px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
             transition: all 0.3s ease;
         }
 
         .contact-item:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateX(5px);
-            border-color: rgba(255, 255, 255, 0.3);
         }
 
         .contact-item i {
@@ -213,53 +175,52 @@
             min-width: 28px;
             font-size: 16px;
             margin-right: 12px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .contact-item a {
             color: rgba(255, 255, 255, 0.95);
             text-decoration: none;
             font-size: 14px;
-            transition: all 0.3s ease;
+            transition: color 0.3s ease;
         }
 
         .contact-item a:hover {
             color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
+        /* Social Links */
         .social-links {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             justify-items: center;
+            margin-top: 25px;
         }
 
         .social-links a {
-            color: #fff;
+            width: 55px;
+            height: 55px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 55px;
-            height: 55px;
             background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+            text-decoration: none;
             transition: all 0.3s ease;
-        }
-
-        .social-links a i {
-            font-size: 20px;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .social-links a:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: scale(1.15);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 255, 255, 0.3);
         }
 
+        .social-links a i {
+            font-size: 20px;
+        }
+
+        /* Download Button */
         .download-button {
             display: flex;
             align-items: center;
@@ -269,65 +230,37 @@
             padding: 12px;
             margin-top: 25px;
             background: linear-gradient(135deg, #1e40af, #0891b2);
-            color: #fff;
             border: none;
             border-radius: 15px;
-            text-decoration: none;
+            color: #fff;
             font-weight: 600;
             font-size: 15px;
+            text-decoration: none;
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(30, 64, 175, 0.4);
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .download-button::before {
-            content: '';
-            position: absolute;
-            inset: 50%;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: all 0.6s;
-        }
-
-        .download-button:hover::before {
-            width: 300px;
-            height: 300px;
+            transition: all 0.4s ease;
         }
 
         .download-button:hover {
-            transform: translateY(-3px) scale(1.02);
+            transform: translateY(-3px);
             box-shadow: 0 15px 40px rgba(30, 64, 175, 0.6);
         }
 
-        .download-button i,
-        .download-button span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .download-button i {
-            font-size: 18px;
-        }
-
+        /* Responsive - Mobile */
         @media (max-width: 768px) {
             body {
                 padding: 10px;
                 padding-top: 10px;
                 overflow-y: auto;
-                align-items: flex-start;
             }
 
             .card {
                 width: 100%;
                 padding: 30px 20px;
-                margin: 0;
-                border-radius: 25px;
+                margin-top: 0;
             }
 
-            .card h2 {
+            h2 {
                 font-size: 28px;
             }
 
@@ -336,21 +269,9 @@
                 height: 120px;
             }
 
-            .card .title {
-                font-size: 15px;
-            }
-
-            .card .company {
-                font-size: 14px;
-            }
-
             .social-links a {
                 width: 50px;
                 height: 50px;
-            }
-
-            .social-links a i {
-                font-size: 18px;
             }
         }
 
@@ -358,239 +279,101 @@
             body {
                 padding: 10px 15px;
                 padding-top: 10px;
-                align-items: flex-start;
             }
 
             .card {
-                max-width: 92%;
                 padding: 25px 18px;
-                border-radius: 20px;
-                margin: auto;
+                margin: 0 auto;
+                margin-top: 0;
             }
 
-            .card h2 {
+            h2 {
                 font-size: 24px;
-                margin-bottom: 8px;
             }
 
             .profile-photo {
                 width: 100px;
                 height: 100px;
-                border-width: 4px;
-                margin-bottom: 15px;
-            }
-
-            .card .title {
-                font-size: 14px;
-                margin-bottom: 4px;
-            }
-
-            .card .company {
-                font-size: 13px;
-                margin-bottom: 20px;
-            }
-
-            .divider {
-                margin: 20px 0;
-            }
-
-            .contact-item {
-                margin: 8px 0;
-                padding: 10px;
-                border-radius: 12px;
-            }
-
-            .contact-item i {
-                font-size: 15px;
-                min-width: 22px;
-                margin-right: 10px;
-            }
-
-            .contact-item a {
-                font-size: 13px;
-                word-break: break-word;
-            }
-
-            .social-section {
-                margin-top: 20px;
-            }
-
-            .social-links {
-                gap: 10px;
             }
 
             .social-links a {
                 width: 46px;
                 height: 46px;
             }
-
-            .social-links a i {
-                font-size: 16px;
-            }
-
-            .download-button {
-                padding: 12px;
-                margin-top: 20px;
-                font-size: 14px;
-                border-radius: 12px;
-            }
-
-            .download-button i {
-                font-size: 16px;
-            }
-
-            .card::before,
-            .profile-photo {
-                animation: none;
-            }
-        }
-
-        @media (max-width: 360px) {
-            body {
-                padding: 15px 10px;
-            }
-
-            .card {
-                max-width: 94%;
-                padding: 20px 15px;
-            }
-
-            .card h2 {
-                font-size: 22px;
-            }
-
-            .profile-photo {
-                width: 90px;
-                height: 90px;
-            }
-
-            .contact-item a {
-                font-size: 12px;
-            }
-
-            .social-links {
-                gap: 8px;
-            }
-
-            .social-links a {
-                width: 44px;
-                height: 44px;
-            }
-
-            .social-links a i {
-                font-size: 15px;
-            }
-
-            .download-button {
-                font-size: 13px;
-                padding: 11px;
-            }
-        }
-
-        @media (hover: none) and (pointer: coarse) {
-
-            .contact-item,
-            .social-links a,
-            .download-button {
-                min-height: 44px;
-            }
-
-            .contact-item:active,
-            .social-links a:active {
-                transform: scale(0.98);
-                opacity: 0.9;
-            }
-
-            .download-button:active {
-                transform: scale(0.98);
-            }
-
-            .profile-photo:hover {
-                transform: scale(1);
-                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 10px rgba(255, 255, 255, 0.1);
-            }
-
-            .contact-item:hover {
-                transform: none;
-            }
         }
     </style>
 </head>
 
 <body>
+    <!-- Generate Floating Particles -->
     <script>
-        const isMobile = window.innerWidth <= 768;
-        const particleCount = isMobile ? 20 : 50;
+        const particleCount = window.innerWidth <= 768 ? 20 : 50;
         for (let i = 0; i < particleCount; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random() * 100 + 'vw';
-            p.style.animationDelay = Math.random() * 20 + 's';
-            p.style.animationDuration = (15 + Math.random() * 10) + 's';
-            document.body.appendChild(p);
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDelay = Math.random() * 20 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            document.body.appendChild(particle);
         }
     </script>
 
-    <div class="card" id="contactCard">
-        <div class="profile-section">
-            <div class="profile-photo" style="background-image: url('Ezzat.jpg');"></div>
-            <h2>Mohamed Ezzat</h2>
-            <p class="title">Software Development Consultant</p>
-            <p class="company">Full Stack Developer | Digital Skills Unit Head</p>
+    <!-- Contact Card -->
+    <div class="card">
+        <!-- Profile -->
+        <div class="profile-photo" style="background-image: url('Ezzat.jpg');"></div>
+        <h2>Mohamed Ezzat</h2>
+        <p class="title">Software Development Consultant</p>
+        <p class="company">Full Stack Developer | Digital Skills Unit Head</p>
+
+        <div class="divider"></div>
+
+        <!-- Contact Info -->
+        <div class="contact-item">
+            <i class="fas fa-mobile-alt"></i>
+            <a href="tel:+201062048212">+20 106 204 8212</a>
+        </div>
+
+        <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:mohamed.ezzat@mail.com">Mohamed.Ezzat@Mail.com</a>
+        </div>
+
+        <div class="contact-item">
+            <i class="fa-brands fa-github"></i>
+            <a href="https://github.com/Eng-Mohamed-Ezzat" target="_blank">Eng-Mohamed-Ezzat</a>
+        </div>
+
+        <div class="contact-item">
+            <i class="fas fa-globe"></i>
+            <a href="https://eng-mohamed-ezzat.github.io/" target="_blank">eng-mohamed-ezzat.github.io</a>
         </div>
 
         <div class="divider"></div>
 
-        <div class="contact-section">
-            <div class="contact-item">
-                <i class="fas fa-mobile-alt"></i>
-                <a href="tel:+201062048212">+20 106 204 8212</a>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <a href="mailto:mohamed.ezzat@mail.com">Mohamed.Ezzat@Mail.com</a>
-            </div>
-            <div class="contact-item">
-                <i class="fa-brands fa-github"></i>
-                <a href="https://github.com/Eng-Mohamed-Ezzat" target="_blank">Eng-Mohamed-Ezzat</a>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-globe"></i>
-                <a href="https://eng-mohamed-ezzat.github.io/" target="_blank">eng-mohamed-ezzat.github.io</a>
-            </div>
+        <!-- Social Media -->
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/eng-mohamed-ezzat" target="_blank" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://www.facebook.com/M.Ezzat.Official" target="_blank" title="Facebook">
+                <i class="fab fa-facebook"></i>
+            </a>
+            <a href="https://x.com/engmoezzat" target="_blank" title="X (Twitter)">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/eng-mohamed-ezzat/recent-activity/articles/" target="_blank"
+                title="Articles">
+                <i class="fas fa-newspaper"></i>
+            </a>
         </div>
 
-        <div class="divider"></div>
-
-        <div class="social-section">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/eng-mohamed-ezzat" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://www.facebook.com/M.Ezzat.Official" target="_blank" title="Facebook">
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a href="https://x.com/engmoezzat" target="_blank" title="X (Twitter)">
-                    <i class="fab fa-x-twitter"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/eng-mohamed-ezzat/recent-activity/articles/" target="_blank"
-                    title="Articles">
-                    <i class="fas fa-newspaper"></i>
-                </a>
-            </div>
-        </div>
-
+        <!-- Download vCard -->
         <a href="ezzat.vcf" download="ezzat.vcf" class="download-button">
             <i class="fas fa-address-card"></i>
             <span>Add to Contacts</span>
         </a>
     </div>
-
-    <script>
-        window.onload = () => {
-            setTimeout(() => document.getElementById('contactCard').classList.add('visible'), 1000);
-        };
-    </script>
 </body>
 
 </html>
